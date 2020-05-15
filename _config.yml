@@ -1,0 +1,9 @@
+title: Warpcore
+
+permalink: pretty
+
+plugins:
+  - jekyll-seo-tag               # Remove this
+  - jekyll-redirect-from         # Remove this
+  - jekyll-default-layout        # Remove this
+  - jekyll-optional-front-matter # Remove this

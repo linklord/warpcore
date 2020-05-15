@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% seo %}
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen" type="text/css">
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
+  {%- if site.docsearch -%}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
+  {%- endif -%}
+</head>
+<body {% if page.toc %}class="position-relative" data-spy="scroll" data-target="#wc-toc-nav" data-offset="0"{% endif %}>
+
+<div class="container-fluid">
+  <div class="row flex-xl-nowrap">
+    <div class="col-md-12 col-xl-10">
+      <div class="row">
+        <div class="col-md-3 col-xl-3 wc-sidebar">
+        {% include sidebar.html %}
+        </div>
+        <main class="wc-content col-md-9 col-xl-9 py-md-5 px-md-5" role="main">
+          <h1 class="wc-title">{{ page.title }}</h1>
+          <p class="wc-lead">{{ page.description }}</p>
+          {{ content }}
+          {% if page.footer_links or page.footer_links == nil %}
+          {% include footer-links.html %}
+          {% endif %}
+        </main>
+      </div>
+    </div>
+    {% if page.toc %}
+    <nav id="wc-toc-nav" class="d-none d-xl-block col-xl-2 wc-toc" aria-label="Secondary navigation">
+      {% include toc.html html=content class="nav.section-nav" anchor_class="nav-link" item_class="toc-entry.toc-h%level%" h_min=2 h_max=4 %}
+    </nav>
+    {% endif %}
+  </div>
+</div>
+
+{%- if site.docsearch -%}{% include docsearch.html %}{%- endif -%}
+{% include scripts.html %}
+{% include mathjax.html %}
+</body>
+</html>

@@ -1,0 +1,120 @@
+{%- assign prev_page = nil -%}
+{%- assign prev_page_group = nil -%}
+{%- assign next_page = nil -%}
+{%- assign next_page_group = nil -%}
+
+{%- assign page_slug = page.url | split: '/' | last -%}
+
+{%- for group in site.data.nav -%}
+    {%- assign group_first = forloop.first -%}
+    {%- assign group_last = forloop.last -%}
+    {%- assign group_index = forloop.index0 -%}
+    {%- assign group_slug = group.title | slugify -%}
+    {%- if page.group == group_slug -%}
+        {%- if group.pages == nil -%}
+            {%- if group_first == false -%}
+                {%- assign prev_group_index = group_index | minus: 1 -%}
+                {%- if site.data.nav[prev_group_index].pages != nil -%}
+                    {%- assign prev_page_item = site.data.nav[prev_group_index].pages | last -%}
+                    {%- assign prev_page = prev_page_item.title -%}
+                    {%- assign prev_page_group = site.data.nav[prev_group_index].title -%}
+                {%- else -%}
+                    {%- assign prev_page_group = site.data.nav[prev_group_index].title -%}
+                {%- endif -%}
+            {%- endif -%}
+            {%- if forloop.last != true -%}
+                {%- assign next_index = forloop.index0 | plus: 1 -%}
+                {%- if site.data.nav[next_index].pages != nil -%}
+                    {%- assign next_page = site.data.nav[next_index].pages[0].title -%}
+                    {%- assign next_page_group = site.data.nav[next_index].title -%}
+                {%- else -%}
+                    {%- assign next_page_group = site.data.nav[next_index].title -%}
+                {%- endif -%}
+            {%- endif -%}
+        {%- else -%}
+            {%- for doc in group.pages -%}
+                {%- assign doc_slug = doc.title | slugify -%}
+                {%- if page_slug == doc_slug -%}
+                    {%- if forloop.first != true -%}
+                        {%- assign prev_index = forloop.index0 | minus: 1 -%}
+                        {%- assign prev_page = group.pages[prev_index].title -%}
+                        {%- assign prev_page_group = group.title -%}
+                    {%- else -%}
+                        {%- if group_first == false -%}
+                            {%- assign prev_group_index = group_index | minus: 1 -%}
+                            {%- if site.data.nav[prev_group_index].pages != nil -%}
+                                {%- assign prev_page_item = site.data.nav[prev_group_index].pages | last -%}
+                                {%- assign prev_page = prev_page_item.title -%}
+                                {%- assign prev_page_group = site.data.nav[prev_group_index].title -%}
+                            {%- else -%}
+                                {%- assign prev_page_group = site.data.nav[prev_group_index].title -%}
+                            {%- endif -%}
+                        {%- endif -%}
+                    {%- endif -%}
+                    {%- if forloop.last != true -%}
+                        {%- assign next_index = forloop.index0 | plus: 1 -%}
+                        {%- assign next_page = group.pages[next_index].title -%}
+                        {%- assign next_page_group = group.title -%}
+                    {%- else -%}
+                        {%- assign next_group_index = group_index | plus: 1 -%}
+                        {%- if site.data.nav[next_group_index].pages != nil -%}
+                            {%- assign next_page = site.data.nav[next_group_index].pages[0].title -%}
+                            {%- assign next_page_group = site.data.nav[next_group_index].title -%}
+                        {%- else -%}
+                            {%- assign next_page_group = site.data.nav[next_group_index].title -%}
+                        {%- endif -%}
+                    {%- endif -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endfor -%}
+<footer class="wc-footer">
+<div class="row">
+    <div class="col wc-footer-prev">
+        {%- if prev_page_group -%}
+        {%- assign group_slug = prev_page_group | slugify -%}
+        {%- assign link_slug = prev_page | slugify -%}
+        {%- if prev_page -%}
+            {%- assign prev_text = prev_page -%}
+        {%- else -%}
+            {%- assign prev_text = prev_page_group -%}
+        {%- endif -%}
+
+        {%- if prev_page -%}
+        <small class="text-muted">Previous: {{ prev_page_group }}</small>
+        {%- else -%}
+        <small class="text-muted">Previous</small>
+        {%- endif -%}
+
+        <p class="lead"><a href="{{ site.baseurl }}/{{ group_slug }}/{{ link_slug }}{% if link_slug %}/{% endif %}">
+            &larr; {{ prev_text }}
+        </a></p>
+
+        {%- endif -%}
+    </div>
+    <div class="col wc-footer-next">
+        {%- if next_page_group -%}
+        {%- assign group_slug = next_page_group | slugify -%}
+        {%- assign link_slug = next_page | slugify -%}
+        {%- if next_page -%}
+            {%- assign next_text = next_page -%}
+        {%- else -%}
+            {%- assign next_text = next_page_group -%}
+        {%- endif -%}
+
+        {%- if next_page -%}
+        <small class="text-muted">Next: {{ next_page_group }}</small>
+        {%- else -%}
+        <small class="text-muted">Next</small>
+        {%- endif -%}
+
+        <p class="lead"><a href="{{ site.baseurl }}/{{ group_slug }}/{{ link_slug }}{% if link_slug %}/{% endif %}">
+            {{ next_text }} &rarr;
+        </a></p>
+        {%- endif -%}
+    </div>
+</div>
+
+</footer>
+

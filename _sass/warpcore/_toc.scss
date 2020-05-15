@@ -1,0 +1,46 @@
+//
+// Right-side table of contents
+//
+
+.wc-toc {
+  @supports (position: sticky) {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  order: 2;
+  padding-top: 3rem;
+  padding-bottom: 1.5rem;
+  @include font-size(.875rem);
+}
+
+.section-nav {
+  &.nav {
+    display: block;
+  }
+  padding-left: 0;
+  border-left: 1px solid #eee;
+
+  ul {
+    padding-left: 1rem;
+  }
+}
+
+.toc-entry {
+  display: block;
+
+  a {
+    display: block;
+    padding: .125rem 1.5rem;
+    color: #77757a;
+
+    &:hover {
+      color: $blue;
+      text-decoration: none;
+    }
+    &.active {
+      color: $blue;
+    }
+  }
+}
