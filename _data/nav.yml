@@ -1,8 +1,7 @@
-- title: TODO
+- title: Formatting
 - title: Installation
 - title: Configuration
   pages:
     - title: Navigation
-    - title: Front matter
     - title: Mathjax
-    - title: Footer links
+    - title: Docsearch

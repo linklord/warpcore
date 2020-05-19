@@ -1,9 +1,9 @@
 title: Warpcore
-
 permalink: pretty
-
 plugins:
-  - jekyll-seo-tag               # Remove this
-  - jekyll-redirect-from         # Remove this
-  - jekyll-default-layout        # Remove this
-  - jekyll-optional-front-matter # Remove this
+  - jekyll-redirect-from
+
+# docsearch:
+#   application_id: ''
+#   index_name:     ''
+#   search_only_api_key: ''

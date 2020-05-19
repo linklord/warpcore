@@ -14,6 +14,17 @@
   border-right: 1px solid rgba(0, 0, 0, .1);
   border-bottom: 1px solid rgba(0, 0, 0, .1);
   order: 0;
+
+  @include media-breakpoint-up(xl) {
+    flex: 0 1 320px;
+  }
+}
+
+.wc-docsearch {
+  padding: 1rem 1rem;
+  margin-right: -15px;
+  margin-left: -15px;
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
 
 .wc-sidebar-block {
@@ -53,7 +64,7 @@
 }
 
 .wc-sidenav {
-  display: block;
+  display: none;
 }
 
 .wc-sidebar-link {
@@ -70,10 +81,12 @@
 
 .wc-sidebar-item {
   &.active {
-    margin-bottom: 1rem;
+    border-left: solid 4px $primary;
+    // margin-bottom: 0.5rem;
+    background-color: rgba(0, 0, 0, .025);
 
     &:not(:first-child) {
-      margin-top: 1rem;
+      // margin-top: 0.5rem;
     }
 
     > .wc-sidebar-link {

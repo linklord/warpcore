@@ -2,20 +2,16 @@
 // Content styling
 //
 .wc-title {
-  font-weight: 600;
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: .5rem;
   @include font-size(3rem);
-
-  @include media-breakpoint-up(lg) {
-    margin-top: 0;
-  }
 }
 
 .wc-lead {
   @include font-size(1.5rem);
   font-weight: 300;
   color: #6d6d6d;
+  padding-bottom: 1rem;
 
   @include media-breakpoint-up(lg) {
     max-width: 80%;
@@ -24,174 +20,147 @@
 
 .wc-content {
 
-  .highlight {
-    background-color: #f6f8fa;
-    pre {
-      // padding: 10px;
+  > h2,h3,h4,h5,h6 {
+    margin-bottom: 1rem;
+
+  }
+
+  > table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+      overflow-x: auto;
+
+      &.table-bordered {
+        border: 0;
+      }
+    }
+
+    // Cells
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        > th,
+        > td {
+          // padding: $table-cell-padding;
+          padding: $table-cell-padding-sm;
+          vertical-align: top;
+          border: 1px solid $table-border-color;
+
+          > p:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    > thead {
+      > tr {
+        > th {
+          color: $table-head-color;
+          background-color: $table-head-bg;
+          border-color: $table-border-color;
+        }
+      }
+    }
+
+    // Prevent breaking of code (e.g., Grunt tasks list)
+    td:first-child > code {
+      white-space: nowrap;
     }
   }
 
+  > h2 {
+    @include font-size($h2-font-size);
+  }
+
+  > h3 {
+    @include font-size($h3-font-size);
+  }
+
+  > h4 {
+    @include font-size($h4-font-size);
+  }
+
+  > h2:not(:first-child) {
+    margin-top: 3rem;
+  }
+
+  > h3 {
+    margin-top: 1.5rem;
+  }
+
+  > ul li,
+  > ol li {
+    margin-bottom: .25rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    > ul,
+    > ol,
+    > p {
+      max-width: 80%;
+    }
+  }
 
   // Responsive images
   img {
     @include img-fluid()
   }
+
+  > blockquote {
+    background-color: rgba(255,229,100,0.3);
+    border-left: solid 9px #ffe564;
+    padding: 1rem 1rem 0.5rem;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 2rem;
+    p {
+      margin-bottom: 0.5rem;
+      &:first-of-type {
+        font-weight: bold;
+      }
+    }
+
+    @include media-breakpoint-up(sm) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
 }
 
-// .wc-content {
-//   order: 1;
-//   font-size: 17px;
+div.highlight {
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: (-$grid-gutter-width / 2);
+  margin-left: (-$grid-gutter-width / 2);
 
-//   p {
-//     margin-bottom: 2rem;
-//   }
+  background-color: $gray-100;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 
-//   ul {
-//     margin-bottom: 2rem;
-//     ul {
-//       margin-bottom: 0;
-//     }
-//   }
+  @include media-breakpoint-up(sm) {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+  }
 
-//   h2 {
-//     margin-bottom: 2rem;
-//     line-height: 1.5;
-//     font-weight: 600;
-//     &:before {
-//       content: " ";
-//       display: block;
-//       padding-top: 1.5rem;
-//       margin-bottom: 1.5rem;
-//       border-bottom: solid 1px rgb(236, 236, 236);
-//     }
-//   }
+  pre {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: transparent;
+    border: 0;
+  }
+  pre code {
+    @include font-size(inherit);
+    color: $gray-900; // Effectively the base text color
+  }
+}
 
-//   h3 {
-//     font-weight: 600;
-//     font-size: 1.5rem;
-//     //margin-top: 1.5rem;
-//     margin-bottom: 2rem;
-//   }
 
-//   h4 {
-//     font-size: 1.25rem;
-//     font-weight: 600;
-//     margin-bottom: 2rem;
-//   }
-
-//   h5 {
-//     margin-bottom: 1.5rem;
-//   }
-
-//   > table {
-//     width: 100%;
-//     max-width: 100%;
-//     margin-bottom: 2rem;
-
-//     @include media-breakpoint-down(md) {
-//       display: block;
-//       overflow-x: auto;
-
-//       &.table-bordered {
-//         border: 0;
-//       }
-//     }
-//     > thead,
-//     > tbody,
-//     > tfoot {
-//       > tr {
-//         > th,
-//         > td {
-//           padding: $table-cell-padding;
-//           vertical-align: top;
-//           border: 1px solid $table-border-color;
-
-//           > p:last-child {
-//             margin-bottom: 0;
-//           }
-//         }
-//       }
-//     }
-
-//     // Prevent breaking of code (e.g., Grunt tasks list)
-//     td:first-child > code {
-//       white-space: nowrap;
-//     }
-//   }
-
-//   // Responsive images
-//   img {
-//     @include img-fluid()
-//   }
-
-//   pre {
-//     margin-bottom: 2rem;
-//   }
-
-//   code {
-//     //background-color: rgba(27,31,35,.05);
-//     background-color: rgba(255, 229, 100, 0.2);
-//     color: rgb(26, 26, 26);
-//     padding-left: 3px;
-//     padding-right: 3px;
-//   }
-
-//   hr {
-//     margin-bottom: 2rem;
-//   }
-
-//   // Details
-//   details {
-//     p {
-//       padding-left: 1rem;
-//       &:first-of-type {
-//         margin-top: 1rem;
-//       }
-//       margin-bottom: 0.5rem;
-//     }
-//   }
-
-//   // Blockquotes
-//   blockquote {
-//     background-color: rgba(255,229,100,0.3);
-//     border-left: solid 9px #ffe564;
-//     padding: 1rem 1rem 0.5rem;
-//     margin-left: -15px;
-//     margin-right: -15px;
-//     margin-bottom: 2rem;
-//     p {
-//       margin-bottom: 1rem;
-//       &:first-of-type {
-//         font-weight: bold;
-//       }
-//     }
-
-//     @include media-breakpoint-up(md) {
-//       margin-left: -1.5rem;
-//       margin-right: -1.5rem;
-//     }
-//   }
-// }
-
-// Content inside row + cols
-// .wc-content {
-//   .row {
-//     .highlight {
-//       pre {
-//         padding: 0.75rem 1rem;
-//         margin-left: 0;
-//         margin-right: 0;
-//         @include media-breakpoint-up(md) {
-//           @include border-radius(0.5rem);
-//           margin-left: 0;
-//           margin-right: 0;
-//         }
-//       }
-//       code {
-//         line-height: 1.75;
-//         color: #fcfcfc;
-//         background-color: transparent;
-//       }
-//     }
-//   }
-// }

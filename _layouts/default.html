@@ -13,29 +13,28 @@
   {%- endif -%}
 </head>
 <body {% if page.toc %}class="position-relative" data-spy="scroll" data-target="#wc-toc-nav" data-offset="0"{% endif %}>
-
 <div class="container-fluid">
   <div class="row flex-xl-nowrap">
-    <div class="col-md-12 col-xl-10">
-      <div class="row">
-        <div class="col-md-3 col-xl-3 wc-sidebar">
+        <div class="col-md-3 col-xl-2 wc-sidebar">
         {% include sidebar.html %}
         </div>
-        <main class="wc-content col-md-9 col-xl-9 py-md-5 px-md-5" role="main">
+
+        {% if page.toc or page.toc == nil %}
+        <nav id="wc-toc-nav" class="d-none d-xl-block col-xl-2 wc-toc" aria-label="Secondary navigation">
+          {% include toc.html html=content class="nav.section-nav" anchor_class="nav-link" item_class="toc-entry.toc-h%level%" h_min=2 h_max=4 %}
+        </nav>
+        {% endif %}
+
+        <main class="wc-content col-md-9 col-xl-8 py-md-3 pl-md-5" role="main">
           <h1 class="wc-title">{{ page.title }}</h1>
           <p class="wc-lead">{{ page.description }}</p>
           {{ content }}
+          {% unless page.group == nil %}
           {% if page.footer_links or page.footer_links == nil %}
           {% include footer-links.html %}
           {% endif %}
+          {% endunless %}
         </main>
-      </div>
-    </div>
-    {% if page.toc %}
-    <nav id="wc-toc-nav" class="d-none d-xl-block col-xl-2 wc-toc" aria-label="Secondary navigation">
-      {% include toc.html html=content class="nav.section-nav" anchor_class="nav-link" item_class="toc-entry.toc-h%level%" h_min=2 h_max=4 %}
-    </nav>
-    {% endif %}
   </div>
 </div>
 
