@@ -2,6 +2,8 @@ title: Warpcore
 permalink: pretty
 plugins:
   - jekyll-redirect-from
+sass:
+  style: compressed
 
 # docsearch:
 #   application_id: ''
