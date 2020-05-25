@@ -1,4 +1,5 @@
 title: Warpcore
+markdown: kramdown
 permalink: pretty
 plugins:
   - jekyll-redirect-from
