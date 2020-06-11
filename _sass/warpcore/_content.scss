@@ -131,7 +131,12 @@
       margin-right: 0;
     }
   }
-
+  > details {
+    > summary {
+      margin-bottom: 1rem;
+    }
+    margin-bottom: 1rem;
+  }
 }
 
 div.highlight {
