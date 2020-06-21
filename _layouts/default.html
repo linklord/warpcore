@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
   {%- endif -%}
 </head>
-<body {% if page.toc %}class="position-relative" data-spy="scroll" data-target="#wc-toc-nav" data-offset="0"{% endif %}>
+<body{% if page.toc or page.toc == nil %} class="position-relative" data-spy="scroll" data-target="#wc-toc-nav" data-offset="0"{% endif %}>
 <div class="container-fluid">
   <div class="row flex-xl-nowrap">
         <div class="col-md-3 col-xl-2 wc-sidebar">
